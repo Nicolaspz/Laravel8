@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+#cadastro {
+    
+}
+body{
+    background: #000;
+}
+.card{
+    border: 3px solid red;
+}
