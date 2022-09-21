@@ -20,7 +20,7 @@ Route::get('/somos', [PostController::class, 'somos'])->name('post.somos');
 Route::get('services', [ServicoController::class, 'listar'])->name('post.listar');
 Route::post('services', [ServicoController::class, 'store'])->name('post.store');
 Route::get('services/{id}', [ServicoController::class, 'show'])->name('post.show');
-Route::delete('services/{id}', [PostController::class, 'destroy'])->name('post.destroy');
+Route::delete('services/{id} ', [PostController::class, 'destroy'])->name('post.destroy');
 Route::get('post/edit', [PostController::class, 'edit'])->name('post.edit');
 Route::put('post/{id}', [PostController::class, 'update'])->name('post.update');
 
