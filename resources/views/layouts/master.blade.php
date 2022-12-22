@@ -26,44 +26,51 @@
 <body class="">
   <div class="wrapper ">
     <div class="sidebar" data-color="wee"> <!--  Tip 1: You can change the color of the sidebar using: data-color="blue | green | orange | red | yellow"-->
-      
+
         <div class="logo">
         <a href="#" class="simple-text logo-mini">
             <img src="https://weeconnect.co.ao/omni/uploads/18-03-22/85489_favicon-08.png">
-            
+
         </a>
         <a href="#" class="simple-text logo-normal">
-          WeeConnect 
+          WeeConnect
         </a>
       </div>
       <div class="sidebar-wrapper" id="sidebar-wrapper">
         <ul class="nav">
           <li class="{{ 'services' == request()->path() ? 'active nome' : '' }}">
-            <a href="{{route('post.listar')}}">
+            <a href=" {{route('avaliacao')}} ">
               <i class="now-ui-icons design_app"></i>
-              <p class="">Nossos Serviços</p>
+              <p class="">AVALIAÇÕES</p>
             </a>
           </li>
           <li class="{{ 'somos' == request()->path() ? 'active nome' : '' }}">
-            <a href="{{route('post.somos')}}">
+            <a href=" {{route('candidato')}} ">
               <i class="now-ui-icons education_atom"></i>
-              <p class="">Quem Somos</p>
+              <p class="">CANDIDATOS</p>
             </a>
           </li>
-           
-          <li class="{{ 'contact' == request()->path() ? 'active nome' : '' }}">
-            <a href="/contact">
-              <i class="now-ui-icons design_bullet-list-67"></i>
-              <p>Contactos</p>
-            </a>
-          </li>
+
+
           <li class="{{ 'user' == request()->path() ? 'active nome' : '' }}">
-            <a href="{{route('post.user')}}">
+            <a href="#">
               <i class="now-ui-icons users_single-02"></i>
               <p>User Profile</p>
             </a>
           </li>
-          
+          <li class="{{ 'user' == request()->path() ? 'active nome' : '' }}">
+            <a href="#">
+              <i class="now-ui-icons users_single-02"></i>
+              <p>AVALIAR</p>
+            </a>
+          </li>
+          <li class="{{ 'contact' == request()->path() ? 'active nome' : '' }}">
+            <a href=" {{route('area')}} ">
+              <i class="now-ui-icons design_bullet-list-67"></i>
+              <p>Área</p>
+            </a>
+          </li>
+
         </ul>
       </div>
     </div>
@@ -135,12 +142,12 @@
       <!-- End Navbar -->
 
 
-      
+
       <div class="panel-header panel-header-sm">
       </div>
       <div class="content">
         @yield('content')
-        
+
       </div>
       <footer class="footer">
         <div class=" container-fluid ">

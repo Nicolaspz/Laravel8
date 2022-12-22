@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreUpdatePost;
+use App\Models\Area;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use Illuminate\Support\Facades\Storage;
@@ -10,52 +11,59 @@ use Illuminate\Support\Facades\Storage;
 class PostController extends Controller
 {
     public function index(){
-       
+
        // para paginar bastar trocar o get por paginate(),  e la views chamar {{$post->links()}};
         return view('adim.post.dashboard');
     }
-    
-    public function create(){
-        return view('adim.post.create');
+    public function area(){
+
+        // para paginar bastar trocar o get por paginate(),  e la views chamar {{$post->links()}};
+        $area=Area::get();
+        //dd($Area);
+         return view('adim.post.area', compact('area'));
+     }
+
+    public function candidato(){
+        $area=Area::get();
+        return view('adim.post.candidato',compact('area'));
     }
-    public function store(Request $request){
-        //dd($request->content);
+
+    public function avaliacao(){
+      /*  //dd($request->content);
         $data['titulo']= $request->titulo;
         $data['content']= $request->content;
-        
+
 
         if($request->file('image')->isValid()){
-        
+
          $fileName=$request->nome . '.' . $request->file('image')->extension();
          $image=$request->file('image')->storeAs('postsImg',$fileName); // storeAs para add com o nome,
          $data['image']=$image;
         }
-      
+
       $post=Post::create($data);
       return redirect()
       ->route('post.create')
       ->with('message', 'post criado');
-      
+    */
+    return view('adim.post.avaliacao');
 
     }
 
-    public function show($id){
-        $post=Post::find($id);
-       if(!$post) {
-        return redirect()->route('post.index');
-       }
-        
-        return view('adim.post.show', compact('post'));
+    public function salvarCandidato(Request $request){
+          dd($request);
+
+        //return view('adim.post.show', compact('post'));
     }
-    
-    
+
+
     public function destroy($id){
         $post=Post::find($id);
         if(!$post) {
          return redirect()->route('post.index');
-         
+
         }
-        
+
         if(Storage::exists($post->image))
         //dd("chegou aki ");
         Storage::delete($post->image);
@@ -64,28 +72,28 @@ class PostController extends Controller
         ->route('post.index')
         ->with('message', 'post eliminado');
     }
-     
+
     public function edit($id){
          $post=Post::find($id);
         if(!$post) {
          return redirect()->route('post.index');
-        } 
+        }
         return view('adim.post.edit', compact('post'));
     }
     public function update(StoreUpdatePost $request, $id){
            $post=Post::find($id);
-       
+
         if(!$post) {
          return redirect()->back();
         }
         $data=$request->all();
         if($request->file('image')->isValid()){
-            
+
             if(Storage::exists($post->image))
-            
+
             Storage::delete($post->image);
 
-            
+
             //dd($request->file('image')->store('postsImg'));
             $fileName=$request->nome . '.' . $request->file('image')->extension();
             $image=$request->file('image')->storeAs('postsImg',$fileName); // storeAs para add com o nome,
@@ -98,11 +106,11 @@ class PostController extends Controller
         ->with('message', 'post actualizado');
     }
     public function search(Request $request){
-        
+
          $posts=Post::where('nome', '=', $request->search)
        ->orWhere('content', 'LIKE', "%{$request->search}%")
-        ->paginate(); 
-        
+        ->paginate();
+
         //dd($posts);
         return view('adim.post.index', compact('posts'));
     }

@@ -13,14 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('posts', function (Blueprint $table) {
+        Schema::create('area_candidatos', function (Blueprint $table) {
             $table->id();
-            $table->string('title',160);
-            $table->string('content');
-            $table->string('image')->nullable();
-   
-           
-           
+            $table->integer('id_area');
+            $table->integer('id_candidato');
+            $table->timestamps();
         });
     }
 
@@ -31,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('posts');
+        Schema::dropIfExists('area_candidatos');
     }
 };

@@ -13,15 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('quem_somos', function (Blueprint $table) {
+        Schema::create('areas', function (Blueprint $table) {
             $table->id();
-            $table->string('titulo',190);
-            $table->string('content');
-            
-            $table->string('diference');
-            $table->string('missao');
-            $table->string('visao');
-            $table->string('valores');
+            $table->string('nome',40);
+            $table->string('descricao',100);
             $table->timestamps();
         });
     }
@@ -33,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('quem_somos');
+        Schema::dropIfExists('areas');
     }
 };

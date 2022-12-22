@@ -13,11 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('contactos', function (Blueprint $table) {
+        Schema::create('candidatos', function (Blueprint $table) {
             $table->id();
-            $table->string('number');
-            $table->string('email');
-            $table->string('endereco');
+            $table->integer("id_user")->unique();
+            $table->string('nome');
+            $table->string('genero');
+            $table->text('descricao');
+            $table->date('data_nasc');
+            $table->string('conntacto');
+            $table->string('cv');
+            $table->string('obs');
             $table->timestamps();
         });
     }
@@ -29,6 +34,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('contactos');
+        Schema::dropIfExists('candidatos');
     }
 };
